@@ -18,21 +18,35 @@ class People
   end
 
   def ages_sum
+    @people.inject(0) { |sum, person| sum += person.age }
   end
 
   def average_age
+    @people.inject(0) { |sum, person| sum += (person.age.to_f / @people.length)}
   end
 
   def total_years_programming_experience_for_all_languages
+    @people.inject(0) do |sum, person|
+      sum += person.years_language_experience.inject(0) do |sum2, language|
+        sum2 += language[1]
+      end
+    end
   end
 
   def favorite_food_frequency
+    @people.each_with_object(Hash.new(0)) do |x, y|
+      x.favorite_foods.each_with_object(y) do |a, b|
+        b[a] += 1
+      end
+    end
   end
 
   def total_combined_years_language_experience(language)
+    @people.inject(0) { |sum, person| sum += person.years_language_experience[language].to_i }
   end
 
   def person_with_most_experience_in_language(language)
+    # There is no test for this.
   end
 
   private
