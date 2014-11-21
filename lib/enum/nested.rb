@@ -22,27 +22,30 @@ class People
   end
 
   def average_age
-    @people.inject(0) { |sum, person| sum += (person.age.to_f / @people.length)}
+    ages_sum / @people.length
   end
 
   def total_years_programming_experience_for_all_languages
-    @people.inject(0) do |sum, person|
-      sum += person.years_language_experience.inject(0) do |sum2, language|
-        sum2 += language[1]
-      end
-    end
+    @people
+      .map(&:years_language_experience)
+      .map(&:values)
+      .flatten
+      .inject(:+)
   end
 
   def favorite_food_frequency
-    @people.each_with_object(Hash.new(0)) do |x, y|
-      x.favorite_foods.each_with_object(y) do |a, b|
-        b[a] += 1
-      end
-    end
+    @people
+      .map(&:favorite_foods)
+      .flatten
+      .each_with_object(Hash.new(0)) { |food, frequency| frequency[food] += 1 }
   end
 
   def total_combined_years_language_experience(language)
-    @people.inject(0) { |sum, person| sum += person.years_language_experience[language].to_i }
+    @people
+      .map(&:years_language_experience)
+      .collect {|experience| experience[language] || 0}
+      .flatten
+      .inject(:+)
   end
 
   def person_with_most_experience_in_language(language)
