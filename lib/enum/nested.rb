@@ -42,7 +42,7 @@ class People
   end
 
   def person_with_most_experience_in_language(language) #This wasn't covered by the given tests, but I'll try it anyway.
-    @people.max_by{|person| person.years_language_experience[language]}
+    @people.select{|person| person.years_language_experience[language] != nil}.max_by{|person| person.years_language_experience[language]}
   end
 
   private

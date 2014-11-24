@@ -52,7 +52,9 @@ RSpec.describe People do
   # Trying my hand at writing a test for this.
   describe '#person_with_most_experience_in_language' do
     it 'returns the person with the highest number of years of experience with a given language' do
-      expect(@people.person_with_most_experience_in_language(:perl)[:name]).to eq "Chris"
+      expect(@people.person_with_most_experience_in_language(:perl).name).to eq "Chris"
+      expect(@people.person_with_most_experience_in_language(:c).name).to eq "Jamie"
+      expect(@people.person_with_most_experience_in_language(:ruby).name).to eq "Jamal"
     end
   end
 
