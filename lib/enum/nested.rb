@@ -18,21 +18,31 @@ class People
   end
 
   def ages_sum
+    @people.reduce(0) {|sum,person| sum+person.age}
   end
 
   def average_age
+    ages_sum/@people.length
   end
 
   def total_years_programming_experience_for_all_languages
+    @people.reduce(0) {|group_sum,person| 
+      group_sum+person.years_language_experience.values.reduce(:+)
+    }
   end
 
   def favorite_food_frequency
+    @people.each_with_object(Hash.new(0)){|person,histogram|
+      person.favorite_foods.each_with_object(histogram){|food, histogram| histogram[food] += 1 || 0 }
+    }
   end
 
   def total_combined_years_language_experience(language)
+    @people.reduce(0) {|sum,person| sum+(person.years_language_experience[language] || 0)}
   end
 
-  def person_with_most_experience_in_language(language)
+  def person_with_most_experience_in_language(language) #This wasn't covered by the given tests, but I'll try it anyway.
+    @people.max_by{|person| person.years_language_experience[language]}
   end
 
   private
