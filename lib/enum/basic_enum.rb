@@ -22,11 +22,17 @@ class MyEnumeration
   # This one also uses 'count'
   # Try it yourself!
   def number_of_floats_or_fixnums
+    collection.count do |element|
+      element.is_a?(Float) || element.is_a?(Fixnum)
+    end
   end
 
   # Refer to: all?
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-all-3F
   def all_words_longer_than_length?(min_length)
+    collection.all? do |word|
+      word.length > min_length
+    end
   end
 
 
