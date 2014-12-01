@@ -39,6 +39,9 @@ class MyEnumeration
   # For the next 3 methods refer to: collect or map
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-any-3F
   def contains_a_word_longer_than?(min_length)
+    collection.any? do |word|
+      word.length > min_length
+    end
   end
 
   def capitalize_words
