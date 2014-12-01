@@ -152,43 +152,63 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def longest_element_name_using_inject
+    collection.reduce do |memo, element|
+      memo[:name].length > element[:name].length ? memo : element
+    end
   end
 
   # Refer to max_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-max-by
   def most_experienced_element
+    collection.max_by do |element|
+      element[:years_experience]
+    end
   end
 
   # Refer to include? / member?
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-include-3F
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-member-3F
   def element_present?(name)
+    collection.include?(name)
   end
 
   # Refer to minmax_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-minmax_by
   def elements_with_longest_and_shortest_names
+    collection.minmax_by do |element|
+      element[:name].length
+    end
   end
 
   # Refer to partition
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-partition
   def separate_elements_that_like_functional_programming_from_rest
+    collection.partition do |element|
+      element[:likes_functional_programming]
+    end
   end
 
   # Refer to reject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reject
   def elements_who_dislike_functional_programming
+    collection.reject do |element|
+      element[:likes_functional_programming]
+    end
   end
 
   # Refer to sort
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-sort
   # You will need to use the 'spaceship' operator <=>
   def elements_sorted_by_experience
+    collection.sort do |a, b|
+      a[:years_experience] <=> b[:years_experience]
+    end
   end
 
   # Refer to take
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-take
   def first_x_elements(x)
+    collection.take(x)
   end
 
   private
