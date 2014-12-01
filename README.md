@@ -19,7 +19,7 @@ In the `rspec spec/basic_enum_spec.rb` there are links to documentation that map
 - Do not assign *any* variables
 - Do not modify the function declarations themselves; they already have the proper arguments and names needed there to make the tests pass.
 - Do not use the `.each` method unless specifically told to do such
-- Do not user a `for` loop
+- Do not use a `for` loop
 - Do not modify the tests
 - Do not modify other code that is marked to not be modified
 - Do not write any input/output using puts or gets
