@@ -99,6 +99,7 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_slice
   # Tip: After .each_slice chain on .to_a to turn the returned Enumerator into an array
   def groups_of(num)
+    collection.each_slice(num).to_a
   end
 
 
@@ -106,6 +107,9 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_with_object
   # Tip: You'll have to do .each_with_object(Hash.new(0)) to create a hash to start with. Do not save the hash in a variable. You may use the incrementor method here.
   def element_frequency_count
+    collection.each_with_object(Hash.new(0)) do |element, object|
+      object[element] += 1
+    end
   end
 
 
@@ -113,23 +117,35 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-all
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-select
   def elements_ending_in_er
+    collection.select do |element|
+      element[-2..-1] == 'er'
+    end
   end
 
 
   # Refer to find_index
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-index
   def index_of_first_awesome_element
+    collection.find_index do |element|
+      element[:awesome]
+    end
   end
 
   # Refer to group_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-group-by
   def group_elements_by_favorite_language
+    collection.group_by do |element|
+      element[:favorite_language]
+    end
   end
 
   # Refer to inject / reduce
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def sum_of_experiences
+    collection.reduce(0) do |sum, element|
+      sum + element[:years_experience]
+    end
   end
 
   # Refer to inject / reduce
