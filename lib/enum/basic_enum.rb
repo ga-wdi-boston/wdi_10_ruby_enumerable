@@ -73,16 +73,25 @@ class MyEnumeration
   # Refer to detect or find
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-detect
   def find_first_awesome_person
+    collection.detect do |person|
+      person[:awesome]
+    end
   end
 
   # Refer to drop
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-drop
   def remove_first_three
+    collection.drop(3)
   end
 
   # Refer to drop_while
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-drop_while
   def drop_until_its_hot
+    collection.drop_while do |element|
+      # i got the rolly on my arm and i'm pouring chandon
+      # and i roll the best weed cause i got it going on
+      element != 'hot'
+    end
   end
 
 
