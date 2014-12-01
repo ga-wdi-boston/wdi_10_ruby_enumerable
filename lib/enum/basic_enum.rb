@@ -45,13 +45,20 @@ class MyEnumeration
   end
 
   def capitalize_words
+    collection.map do |word|
+      word.capitalize
+    end
   end
 
   def square_numbers
+    collection.map do |number|
+      number ** 2
+    end
   end
 
   # Use symbol to proc notation on this one!
   def reverse_words
+    collection.collect(&:reverse)
   end
 
   # Refer to collect_concat or flat_map for these next two
