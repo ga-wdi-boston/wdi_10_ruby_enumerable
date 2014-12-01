@@ -65,6 +65,9 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-flat_map
   # To get the order right for the tests, you'll need to use the absolute value method
   def positive_and_negative_numbers
+    collection.flat_map do |number|
+      [number.abs, -(number.abs)]
+    end
   end
 
   # Refer to detect or find
