@@ -48,7 +48,7 @@ class MyEnumeration
   def positive_and_negative_numbers
     inArr.flat_map{ |num| [num.abs, -num.abs] }
   end
-#11
+
   def find_first_awesome_person
     inArr.find{|stat| stat[:awesome] == true}
   end
@@ -70,7 +70,7 @@ class MyEnumeration
       freq_hash[key] = inArr.count(key)
     end
   end
-#16
+
   def elements_ending_in_er
     inArr.find_all{|word| word.split("").last(2) == ["e","r"]}
   end
