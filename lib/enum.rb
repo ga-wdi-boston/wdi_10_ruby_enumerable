@@ -13,7 +13,8 @@ class MyEnumeration
     inArr.count
   end
 
-  # def number_of_floats_or_fixnums
-  #   inArr
+   def number_of_floats_or_fixnums
+     inArr.map{|elem| elem.is_a?(Numeric)}.count(true)
+  end
 
 end
