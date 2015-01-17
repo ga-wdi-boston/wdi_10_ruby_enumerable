@@ -22,7 +22,7 @@ class MyEnumeration
   # This one also uses 'count'
   # Try it yourself!
   def number_of_floats_or_fixnums
-    collection.count { |el| el.is_a?(Fixnum) || el.is_a?(Float) }
+    collection.count { |el| el.is_a?(Numeric) }
   end
 
   # Refer to: all?
