@@ -22,33 +22,40 @@ class MyEnumeration
   # This one also uses 'count'
   # Try it yourself!
   def number_of_floats_or_fixnums
+    collection.map{|elem| elem.is_a?(Numeric)}.count(true)
   end
 
   # Refer to: all?
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-all-3F
   def all_words_longer_than_length?(min_length)
+    collection.all? { |word| word.length > min_length}
   end
 
 
   # For the next 3 methods refer to: collect or map
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-any-3F
   def contains_a_word_longer_than?(min_length)
+    collection.map { |word| word.length > min_length }[-1]
   end
 
   def capitalize_words
+    collection.map { |word| word.capitalize }
   end
 
   def square_numbers
+    collection.map {|num| num ** 2 }
   end
 
   # Use symbol to proc notation on this one!
   def reverse_words
+    collection.map(&:reverse)
   end
 
   # Refer to collect_concat or flat_map for these next two
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-flat_map
   # To get the order right for the tests, you'll need to use the absolute value method
   def positive_and_negative_numbers
+    collection.flat_map {|num| [num.abs, -num.abs]}
   end
 
   # Refer to detect or find
