@@ -29,10 +29,24 @@ class MyEnumeration
     inArr.map(&:capitalize)
   end
 
+  def square_numbers
+    inArr.map{ |num| num**2 }
+  end
+
   def reverse_words
     inArr.map(&:reverse)
   end
 
+  def positive_and_negative_numbers
+    inArr.flat_map{ |num| [num.abs, -num.abs] }
+  end
 
+  def find_first_awesome_person
+    inArr.find{|stat| stat[:awesome] == true}
+  end
+
+  def remove_first_three
+    inArr.drop(3)
+  end
 
 end
