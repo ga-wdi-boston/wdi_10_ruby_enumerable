@@ -49,4 +49,13 @@ RSpec.describe People do
     end
   end
 
+    describe '#person_with_most_experience_in_language' do
+    it 'returns the person with the most experience in a language' do
+      expect(@people.person_with_most_experience_in_language(:ruby)).to eq ({name: "Jamal", age: 78, gender: 'male', years_language_experience: {java: 3, perl: 6, clojure: 3, ruby: 4}, favorite_foods: [:korean, :pizza, :american]})
+      expect(@people.person_with_most_experience_in_language(:python)).to eq ({name: "Chris", age: 31, gender: 'queer', years_language_experience: {ruby: 3, python: 6, perl: 10} , favorite_foods: [:sushi, :greek]})
+      expect(@people.person_with_most_experience_in_language(:javascript)).to eq ({name: "Kee", age: 24, gender: 'female', years_language_experience: {lisp: 3, javascript: 6, fortran: 12}, favorite_foods: [:sushi, :german]})
+      expect(@people.person_with_most_experience_in_language(:c)).to eq ({name: "Jamie", age: 22, gender: 'queer', years_language_experience: {scheme: 3, assembly: 6, c: 10}, favorite_foods: [:indian, :italian]})
+    end
+  end
+
 end
