@@ -1,5 +1,5 @@
 # Don't modify the Person class
-require 'pry-byebug'
+
 class Person
   attr_accessor :name, :age, :gender, :years_language_experience, :favorite_foods
 
@@ -19,11 +19,11 @@ class People
   end
 
   def ages_sum
-    people.map{ |person| person.age }.reduce(:+)
+    people.map(&:age).reduce(:+)
   end
 
   def average_age
-    people.map{ |person| person.age }.reduce(:+) / @people.length
+    people.map(&:age).reduce(:+) / @people.length
   end
 
   def total_years_programming_experience_for_all_languages
@@ -39,7 +39,6 @@ class People
   end
 
   def person_with_most_experience_in_language(language)
-    # binding.pry
     people.each_with_object(Hash.new(0)){|person, years| years[person.name] = person.years_language_experience[language]}.delete_if{|k,v| v == nil}.max_by {|k,v| v}[0]
   end
 

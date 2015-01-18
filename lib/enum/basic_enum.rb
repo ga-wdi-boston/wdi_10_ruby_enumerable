@@ -39,7 +39,7 @@ class MyEnumeration
   end
 
   def capitalize_words
-    collection.map { |word| word.capitalize }
+    collection.map(&:capitalize)
   end
 
   def square_numbers
@@ -89,7 +89,6 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_with_object
   # Tip: You'll have to do .each_with_object(Hash.new(0)) to create a hash to start with. Do not save the hash in a variable. You may use the incrementor method here.
   def element_frequency_count
-    binding.pry
     collection.each_with_object(Hash.new(0)){|word, counts| counts[word] += 1}
   end
 
