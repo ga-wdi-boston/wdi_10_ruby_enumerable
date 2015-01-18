@@ -9,11 +9,11 @@ class Array
   end
 
   def even_numeric_elements
-    select { |item| item.is_a? Fixnum }.select(&:even?)
+    select { |item| (item.is_a? Fixnum) && (item.even?) }
   end
 
   def odd_numeric_elements
-    select { |item| item.is_a? Fixnum }.select(&:odd?)
+    select { |item| (item.is_a? Fixnum) && (item.odd?) }
   end
 
   def string_elements
@@ -21,13 +21,10 @@ class Array
   end
 
   def lowercase_string_elements_as_uppercase
-    select { |item| item.is_a? String }
-    .select { |string| string == string.downcase }
-    .map { |string| string.capitalize }
+    map { |item| (item.is_a? String) && (item == item.downcase) ? item.capitalize : nil }.compact
   end
 
   def capitalized_elements
-    select { |item| item.is_a? String }
-    .select { |string| string[0] == string[0].upcase }
+    select { |item| (item.is_a? String) && (item[0] == item[0].upcase) }
   end
 end
