@@ -65,7 +65,7 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-detect
   def find_first_awesome_person
 #    @collection.find { |person| person[:awesome] == true } # == true is redundant
-    @collection.find { |person| person[:awesome] == true }
+    @collection.find { |person| person[:awesome] }
   end
 
   # Refer to drop
