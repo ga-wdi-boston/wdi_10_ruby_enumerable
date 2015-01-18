@@ -64,6 +64,7 @@ class MyEnumeration
   # Refer to detect or find
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-detect
   def find_first_awesome_person
+#    @collection.find { |person| person[:awesome] == true } # == true is redundant
     @collection.find { |person| person[:awesome] == true }
   end
 
@@ -107,7 +108,7 @@ class MyEnumeration
   # Refer to find_index
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-index
   def index_of_first_awesome_element
-    @collection.find_index { |person| person[:awesome] == true }
+    @collection.find_index { |person| person[:awesome] }
   end
 
   # Refer to group_by
@@ -146,7 +147,7 @@ class MyEnumeration
   # Refer to minmax_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-minmax_by
   def elements_with_longest_and_shortest_names
-    @collection.minmax { |person_1, person_2| person_1[:name].length <=> person_2[:name].length }
+    @collection.minmax_by { |person| person[:name].length }
   end
 
   # Refer to partition
