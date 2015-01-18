@@ -5,11 +5,11 @@ RSpec.describe People do
   before(:each) do
     @rubyist = Person.new(name: "Jamal", age: 78, gender: 'male', years_language_experience: {java: 3, perl: 6, clojure: 3, ruby: 4}, favorite_foods: [:korean, :pizza, :american])
     test_nesting = [
-      Person.new(name: "Chris", age: 31, gender: 'queer', years_language_experience: {ruby: 3, python: 6, perl: 10} , favorite_foods: [:sushi, :greek]),
-      Person.new(name: "Ryan", age: 42, gender: 'male', years_language_experience: {c: 3, java: 6}, favorite_foods: [:thai, :pizza]),
-      Person.new(name: "Anne", age: 19, gender: 'female', years_language_experience: {haskell: 3, erlang: 6}, favorite_foods: [:soylent, :pizza, :french]),
-      Person.new(name: "Kee", age: 24, gender: 'female', years_language_experience: {lisp: 3, javascript: 6, fortran: 12}, favorite_foods: [:sushi, :german]),
-      Person.new(name: "Jamie", age: 22, gender: 'queer', years_language_experience: {scheme: 3, assembly: 6, c: 10}, favorite_foods: [:indian, :italian]),
+      @chris = Person.new(name: "Chris", age: 31, gender: 'queer', years_language_experience: {ruby: 3, python: 6, perl: 10} , favorite_foods: [:sushi, :greek]),
+      @ryan = Person.new(name: "Ryan", age: 42, gender: 'male', years_language_experience: {c: 3, java: 6}, favorite_foods: [:thai, :pizza]),
+      @anne = Person.new(name: "Anne", age: 19, gender: 'female', years_language_experience: {haskell: 3, erlang: 6}, favorite_foods: [:soylent, :pizza, :french]),
+      @kee = Person.new(name: "Kee", age: 24, gender: 'female', years_language_experience: {lisp: 3, javascript: 6, fortran: 12}, favorite_foods: [:sushi, :german]),
+      @jamie = Person.new(name: "Jamie", age: 22, gender: 'queer', years_language_experience: {scheme: 3, assembly: 6, c: 10}, favorite_foods: [:indian, :italian]),
       @rubyist
     ]
     @people = People.new(test_nesting)
@@ -51,11 +51,25 @@ RSpec.describe People do
 
   describe '#person_with_most_experience_in_language' do
     it 'returns the person with the most experience in a language' do
-      expect(@people.person_with_most_experience_in_language(:ruby)).to eq ({name: "Jamal", age: 78, gender: 'male', years_language_experience: {java: 3, perl: 6, clojure: 3, ruby: 4}, favorite_foods: [:korean, :pizza, :american]})
-      expect(@people.person_with_most_experience_in_language(:python)).to eq ({name: "Chris", age: 31, gender: 'queer', years_language_experience: {ruby: 3, python: 6, perl: 10} , favorite_foods: [:sushi, :greek]})
-      expect(@people.person_with_most_experience_in_language(:java)).to eq ({name: "Ryan", age: 42, gender: 'male', years_language_experience: {c: 3, java: 6}, favorite_foods: [:thai, :pizza]})
-      expect(@people.person_with_most_experience_in_language(:c)).to eq ({name: "Jamie", age: 22, gender: 'queer', years_language_experience: {scheme: 3, assembly: 6, c: 10}, favorite_foods: [:indian, :italian]})
-      expect(@people.person_with_most_experience_in_language(:perl)).to eq ({name: "Chris", age: 31, gender: 'queer', years_language_experience: {ruby: 3, python: 6, perl: 10} , favorite_foods: [:sushi, :greek]})
+      expect(@people.person_with_most_experience_in_language(:ruby)).to eq @rubyist
+      # ({name: "Jamal", age: 78, gender: 'male', years_language_experience: {java: 3, perl: 6, clojure: 3, ruby: 4}, favorite_foods: [:korean, :pizza, :american]})
+
+
+      expect(@people.person_with_most_experience_in_language(:python)).to eq @chris
+      # ({name: "Chris", age: 31, gender: 'queer', years_language_experience: {ruby: 3, python: 6, perl: 10} , favorite_foods: [:sushi, :greek]})
+
+
+      expect(@people.person_with_most_experience_in_language(:java)).to eq @ryan
+      # ({name: "Ryan", age: 42, gender: 'male', years_language_experience: {c: 3, java: 6}, favorite_foods: [:thai, :pizza]})
+
+
+      expect(@people.person_with_most_experience_in_language(:c)).to eq @jamie
+      # ({name: "Jamie", age: 22, gender: 'queer', years_language_experience: {scheme: 3, assembly: 6, c: 10}, favorite_foods: [:indian, :italian]})
+
+
+      expect(@people.person_with_most_experience_in_language(:perl)).to eq @chris
+      # ({name: "Chris", age: 31, gender: 'queer', years_language_experience: {ruby: 3, python: 6, perl: 10} , favorite_foods: [:sushi, :greek]})
+
     end
   end
 
