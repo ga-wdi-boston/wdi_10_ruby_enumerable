@@ -25,7 +25,7 @@ class Array
   end
 
   def capitalized_elements
-    select { |el| el.is_a?(String) }.reject { |term| term[0] == term[0].downcase }
+    select { |el| el.is_a?(String) }.reject { |term| term == term.downcase }
   end
 
 end
