@@ -10,6 +10,10 @@ class MyEnumeration
     @inArr = inArr
   end
 
+  def number_of_floats_or_fixnums
+    inArr.map{|elem| elem.is_a?(Numeric)}.count(true)
+  end
+
   def number_of_elements_in_collection
     inArr.count
   end
@@ -91,36 +95,28 @@ class MyEnumeration
   def elements_with_longest_and_shortest_names
     inArr.minmax_by { |info| info[:name].length }
   end
-  #INCORRECT 16 failures!
+
   def separate_elements_that_like_functional_programming_from_rest
-    inArr.partition{|info| info[:likes_functional_programming]}
+   inArr.partition{|info| info[:likes_functional_programming]}
+
   end
-#INCORRECT
-  def separate_elements_that_like_functional_programming_from_rest
+
+  def elements_who_dislike_functional_programming
     inArr.reject{ |info| info[:likes_functional_programming] }
   end
 
   def elements_sorted_by_experience
-    inArr.sort{ |person1, person2| person1[:years_experience] <=> person2[:years_expereience] }
+    inArr.sort{ |person1, person2| person1[:years_experience] <=> person2[:years_experience] }
   end
 
   def first_x_elements(num)
     inArr.take(num)
   end
 
-  #WRONG
-  def ages_sum
-    inArr.find_all{|info| info[:age]}.reduce{:+}
-  end
-
 end
 
 
 class Array
-
-  def number_of_floats_or_fixnums
-    map{|elem| elem.is_a?(Numeric)}.count(true)
-  end
 
   def sum_of_numeric_elements
     select{ |num| num.is_a?(Numeric) }.reduce(:+)
@@ -152,3 +148,10 @@ class Array
 
 end
 
+class People
+
+  def ages_sum
+    select{|info| info[:age]}.reduce{:+}.reduct{:+}
+  end
+
+end
