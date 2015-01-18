@@ -5,24 +5,13 @@ require 'enum/nested'
 class MyEnumeration
 
   attr_reader :inArr
+
   def initialize(inArr)
     @inArr = inArr
   end
 
   def number_of_elements_in_collection
     inArr.count
-  end
-
-  def number_of_floats_or_fixnums
-    inArr.map{|elem| elem.is_a?(Numeric)}.count(true)
-  end
-
-  def sum_of_numeric_elements
-    inArr.select { |num| num.is_a? (Numeric) }.reduce(:+)
-  end
-
-  def product_of_numeric_elements
-    inArr.select { |num| num.is_a? (Numeric) }.reduce(:*)
   end
 
   def all_words_longer_than_length?(len)
@@ -90,14 +79,68 @@ class MyEnumeration
   def longest_element_name_using_inject
     inArr.inject{ |longest, info| longest[:name].length > info[:name].length ? longest : info}
   end
-#19 failures
+
   def most_experienced_element
     inArr.max_by { |info| info[:years_experience] }
   end
-  #18 failures
+
   def element_present?(name)
     inArr.include?(name)
   end
-  #17 failures
+
+  def elements_with_longest_and_shortest_names
+    inArr.minmax_by { |info| info[:name].length }
+  end
+  #INCORRECT 16 failures!
+  def separate_elements_that_like_functional_programming_from_rest
+    inArr.partition{|info| info[:likes_functional_programming]}
+  end
+#INCORRECT
+  def separate_elements_that_like_functional_programming_from_rest
+    inArr.reject{ |info| info[:likes_functional_programming] }
+  end
+
+  def elements_sorted_by_experience
+    inArr.sort{ |person1, person2| person1[:years_experience] <=> person2[:years_expereience] }
+  end
+
+  def first_x_elements(num)
+    inArr.take(num)
+  end
+
+  #WRONG
+  def ages_sum
+    inArr.find_all{|info| info[:age]}.reduce{:+}
+  end
 
 end
+
+
+class Array
+
+  def number_of_floats_or_fixnums
+    map{|elem| elem.is_a?(Numeric)}.count(true)
+  end
+
+  def sum_of_numeric_elements
+    select{ |num| num.is_a?(Numeric) }.reduce(:+)
+  end
+
+  def product_of_numeric_elements
+    select{ |num| num.is_a?(Numeric) }.reduce(1, :*)
+  end
+
+  def even_numeric_elements
+    select{ |num| num.is_a?(Fixnum) && num.even? }
+  end
+
+  def odd_numeric_elements
+    select{ |num| num.is_a?(Fixnum) && num.odd? }
+  end
+
+  def string_elements
+    select{ |elem| elem.is_a?(String)}
+  end
+
+end
+
