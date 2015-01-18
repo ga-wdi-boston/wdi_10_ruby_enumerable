@@ -82,7 +82,7 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_slice
   # Tip: After .each_slice chain on .to_a to turn the returned Enumerator into an array
   def groups_of(num)
-    collection.each_slice(num) { |i| i }
+    collection.each_slice(num).to_a
   end
 
 
@@ -90,7 +90,7 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_with_object
   # Tip: You'll have to do .each_with_object(Hash.new(0)) to create a hash to start with. Do not save the hash in a variable. You may use the incrementor method here
   def element_frequency_count
-    collection.each_with_object(Hash.new(0)) { |element| element }.to_a
+    collection.each_with_object(Hash.new(0)) { |word, hash| hash[word] += 1  }
   end
 
 
@@ -119,22 +119,27 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def sum_of_experiences
-    #broken
-    collection.inject { |sum, key| sum + key[:years_experience] }
+    collection.inject(0) { |sum, key| sum + key[:years_experience] }
   end
 
   # Refer to inject / reduce
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def longest_element_name_using_inject
-    #definitely broken
-    collection.inject({}) do
+    collection.inject do |memo, hash|
+      if memo[:name].length > hash[:name].length
+        memo
+      else
+        hash
+      end
     end
   end
 
   # Refer to max_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-max-by
   def most_experienced_element
+    collection.max_by { |item| item[:years_experience] }
+
   end
 
   # Refer to include? / member?
@@ -147,27 +152,32 @@ class MyEnumeration
   # Refer to minmax_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-minmax_by
   def elements_with_longest_and_shortest_names
+    collection.minmax_by { |item| item[:name].length }
   end
 
   # Refer to partition
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-partition
   def separate_elements_that_like_functional_programming_from_rest
+    collection.partition { |item| item[:likes_functional_programming] == true }
   end
 
   # Refer to reject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reject
   def elements_who_dislike_functional_programming
+    collection.reject { |item| item[:likes_functional_programming] == true }
   end
 
   # Refer to sort
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-sort
   # You will need to use the 'spaceship' operator <=>
   def elements_sorted_by_experience
+    collection.sort { |a, b| a[:years_experience] <=> b[:years_experience]}
   end
 
   # Refer to take
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-take
   def first_x_elements(x)
+    collection.take(x)
   end
 
   private
