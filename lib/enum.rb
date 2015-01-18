@@ -150,8 +150,31 @@ end
 
 class People
 
-  def ages_sum
-    select{|info| info[:age]}.reduce{:+}.reduct{:+}
+  attr_reader :info
+  def initialize(info)
+    @info = info
   end
+
+
+  def ages_sum
+    info.each_with_object([]){ |ind, ages| ages << ind.instance_variable_get(:@age) }.reduce(:+)
+  end
+
+  def average_age
+    info.each_with_object([]){ |ind, ages| ages << ind.instance_variable_get(:@age) }.reduce(:+)/info.length
+  end
+
+  def total_years_programming_experience_for_all_languages
+    info.each_with_object([]){ |ind, year| year << ind.instance_variable_get(:@years_language_experience).values }.flatten!.reduce(:+)
+  end
+
+  def favorite_food_frequency
+    MyEnumeration.new(info.each_with_object([]){ |ind, food| food << ind.instance_variable_get(:@favorite_foods) }.flatten!).element_frequency_count
+  end
+
+  def total_combined_years_language_experience(lang)
+
+    info.each_with_object([]){ |ind, years| years << ind.instance_variable_get(:@years_language_experience)[lang.to_sym] }.compact.reduce(:+)
+    end
 
 end
