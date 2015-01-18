@@ -1,5 +1,3 @@
-require 'pry'
-
 class Array
 
   def sum_of_numeric_elements
@@ -27,7 +25,6 @@ class Array
   end
 
   def capitalized_elements
-    binding.pry
     self.find_all { |element| element.is_a? String }.reject { |element| element == element.downcase }
   end
 
