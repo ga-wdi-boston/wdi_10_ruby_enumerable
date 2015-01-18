@@ -142,5 +142,13 @@ class Array
     select{ |elem| elem.is_a?(String)}
   end
 
+  def lowercase_string_elements_as_uppercase
+    select{ |elem| elem.is_a?(String) && elem.match(/\b[a-z]/)}.map(&:capitalize)
+  end
+
+  def capitalized_elements
+    select{ |elem| elem.is_a?(String) && elem.match(/\b[A-Z]/)}
+  end
+
 end
 
