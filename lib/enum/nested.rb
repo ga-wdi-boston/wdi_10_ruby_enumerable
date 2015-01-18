@@ -27,13 +27,11 @@ class People
   end
 
   def total_years_programming_experience_for_all_languages
-    people.collect(&:years_language_experience)
-    .flat_map(&:values).reduce(:+)
+    people.collect(&:years_language_experience).flat_map(&:values).reduce(:+)
   end
 
   def favorite_food_frequency
-    people.collect(&:favorite_foods).flatten
-    .each_with_object(Hash.new(0)) { |key, hash| hash[key] += 1 }
+    people.flat_map(&:favorite_foods).each_with_object(Hash.new(0)) { |key, hash| hash[key] += 1 }
   end
 
   def total_combined_years_language_experience(language)
