@@ -89,7 +89,7 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_with_object
   # Tip: You'll have to do .each_with_object(Hash.new(0)) to create a hash to start with. Do not save the hash in a variable. You may use the incrementor method here.
   def element_frequency_count
-    collection.each_with_object(Hash.new(0)) { |ele| ele.to_s == ele.to_s ? collection[ele] = false : collection[ele] = true }
+    collection.each_with_object(Hash.new(0)) { |num, word| word[num] += 1}
   end
 
 
@@ -97,45 +97,53 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-all
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-select
   def elements_ending_in_er
+    collection.find_all { |werd| werd.end_with? 'er'}
   end
 
 
   # Refer to find_index
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-index
   def index_of_first_awesome_element
+    collection.find_index { |person| person[:awesome] == true}
   end
 
   # Refer to group_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-group-by
   def group_elements_by_favorite_language
+    collection.group_by { |person| person[:favorite_language]}
   end
 
   # Refer to inject / reduce
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def sum_of_experiences
+    collection.map { |person| person[:years_experience]}.inject(:+)
   end
 
   # Refer to inject / reduce
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def longest_element_name_using_inject
+    collection.max_by { |person| person[:name].length }
   end
 
   # Refer to max_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-max-by
   def most_experienced_element
+    collection.max_by { |person| person[:years_experience] }
   end
 
   # Refer to include? / member?
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-include-3F
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-member-3F
   def element_present?(name)
+    collection.include?(name)
   end
 
   # Refer to minmax_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-minmax_by
   def elements_with_longest_and_shortest_names
+    collection.minmax_by { |person| person[:name].length }
   end
 
   # Refer to partition
