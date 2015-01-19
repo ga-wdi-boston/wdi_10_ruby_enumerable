@@ -22,23 +22,28 @@ class MyEnumeration
   # This one also uses 'count'
   # Try it yourself!
   def number_of_floats_or_fixnums
+    collection.count{ |num| num.is_a? (Numeric)}
   end
 
   # Refer to: all?
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-all-3F
   def all_words_longer_than_length?(min_length)
+    collection.all? { |word| word.length > min_length}
   end
 
 
   # For the next 3 methods refer to: collect or map
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-any-3F
   def contains_a_word_longer_than?(min_length)
+    collection.map { |word| word.count > min_length}
   end
 
   def capitalize_words
+    collection.map(&:capitalize)
   end
 
   def square_numbers
+    collection.map { |num| num ** 2}
   end
 
   # Use symbol to proc notation on this one!
