@@ -61,16 +61,19 @@ class MyEnumeration
   # Refer to detect or find
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-detect
   def find_first_awesome_person
+    collection.find {|name| name[:awesome]}
   end
 
   # Refer to drop
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-drop
   def remove_first_three
+    collection.drop(3)
   end
 
   # Refer to drop_while
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-drop_while
   def drop_until_its_hot
+    collection.drop_while {|word| word != "hot"}
   end
 
 
@@ -78,6 +81,7 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_slice
   # Tip: After .each_slice chain on .to_a to turn the returned Enumerator into an array
   def groups_of(num)
+    collection.each_slice(num).to_a
   end
 
 
@@ -85,6 +89,8 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_with_object
   # Tip: You'll have to do .each_with_object(Hash.new(0)) to create a hash to start with. Do not save the hash in a variable. You may use the incrementor method here.
   def element_frequency_count
+    collection.each_with_object(Hash.new(0)) {|e, h|
+      h << h.count(e)}
   end
 
 
@@ -92,66 +98,80 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-all
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-select
   def elements_ending_in_er
+    collection.find_all {|word| word[-1] == "r" && word[-2] == "e"}
   end
 
 
   # Refer to find_index
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-index
   def index_of_first_awesome_element
+    collection.find_index {|name| name[:awesome]}
   end
 
   # Refer to group_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-group-by
   def group_elements_by_favorite_language
+    collection.group_by {|key| key[:favorite_language]}
   end
 
   # Refer to inject / reduce
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def sum_of_experiences
+    collection.inject(0) {|sum, key| sum + key[:years_experience]}
   end
 
   # Refer to inject / reduce
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def longest_element_name_using_inject
+    collection.inject do |memo, word|
+      memo[:name].length > word[:name].length ? memo : word
+    end
   end
 
   # Refer to max_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-max-by
   def most_experienced_element
+    collection.max_by {|exp| exp.max}
   end
 
   # Refer to include? / member?
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-include-3F
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-member-3F
   def element_present?(name)
+    collection.member?(name)
   end
 
   # Refer to minmax_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-minmax_by
   def elements_with_longest_and_shortest_names
+    collection.minmax_by {|name| name[:name].length}
   end
 
   # Refer to partition
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-partition
   def separate_elements_that_like_functional_programming_from_rest
+    collection.partition {|v| v[:likes_functional_programming]}
   end
 
   # Refer to reject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reject
   def elements_who_dislike_functional_programming
+    collection.reject {|v| v[:likes_functional_programming]}
   end
 
   # Refer to sort
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-sort
   # You will need to use the 'spaceship' operator <=>
   def elements_sorted_by_experience
+    collection.sort {|p1, p2| p1[:years_experience] <=> p2[:years_experience]}
   end
 
   # Refer to take
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-take
   def first_x_elements(x)
+    collection.take(x)
   end
 
   private
