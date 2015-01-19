@@ -22,7 +22,6 @@ class People
   end
 
   def average_age
-    # @people.reduce(:) { |memo, item| memo += item.age}
     @people.reduce(0) { |memo, item| memo += item.age } / @people.size
   end
 
@@ -33,11 +32,7 @@ class People
   end
 
   def favorite_food_frequency
-    # collection.each_with_object(Hash.new(0)) { |key, value| value[key] += 1 }
-    # people.each_with_object(Hash.new(0)) { |key, hash| hash[key.favorite_foods] += 1 }
     people.map { |person| person.favorite_foods }.flatten.each_with_object(Hash.new(0)) { |sum, hash| hash[sum]+=1 }
-
-    # (1..10).each_with_object([]) { |i, a| a << i*2 }
   end
 
   def total_combined_years_language_experience(language)
