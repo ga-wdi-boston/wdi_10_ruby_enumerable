@@ -25,12 +25,11 @@ class Array
   end
 
   def lowercase_string_elements_as_uppercase
-    @my_array.select{ |word| word.is_a? (String)}
-
+    @my_array.select{ |word| word.is_a? (String)}.select{ |word| word == word.downcase}.map(&:capitalize)
   end
 
   def capitalized_elements
-    @my_array.select{ |word| word.is_a? (String)}.select{ |word| word.upcase}
+    @my_array.select{ |word| word.is_a? (String)}.select{ |word| word == word.capitalize}
   end
 
 end
