@@ -9,11 +9,11 @@ class Array
   end
 
   def even_numeric_elements
-    select { |el| el.is_a?(Fixnum) }.select { |num| num % 2 == 0 }
+    select { |el| el.is_a?(Fixnum) }.select { |num| num.even?}
   end
 
   def odd_numeric_elements
-    select { |el| el.is_a?(Fixnum) }.select { |num| num % 2 == 1 }
+    select { |el| el.is_a?(Fixnum) }.select { |num| num.odd? }
   end
 
   def string_elements
