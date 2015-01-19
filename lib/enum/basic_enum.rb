@@ -35,7 +35,7 @@ class MyEnumeration
   # For the next 3 methods refer to: collect or map
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-any-3F
   def contains_a_word_longer_than?(min_length)
-     collection.map { |word| word.count > min_length}
+     collection.any? { |word| word.length > min_length}
   end
 
   def capitalize_words
@@ -55,6 +55,8 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-flat_map
   # To get the order right for the tests, you'll need to use the absolute value method
   def positive_and_negative_numbers
+    collection.flat_map{ |num| [num, -num]}
+
   end
 
   # Refer to detect or find
