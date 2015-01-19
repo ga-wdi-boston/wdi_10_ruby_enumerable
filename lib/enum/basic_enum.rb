@@ -74,6 +74,10 @@ class MyEnumeration
   # Refer to drop_while
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-drop_while
   def drop_until_its_hot
+    # drop_while word is equal to hot
+    # collection.drop_while{ |word| word =='hot'}
+    #drop_while word is not equal to hot once its hot stop?
+    collection.drop_while{ |word| word != 'hot'}
   end
 
 
@@ -81,6 +85,7 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_slice
   # Tip: After .each_slice chain on .to_a to turn the returned Enumerator into an array
   def groups_of(num)
+    collection.each_slice(num).to_a
   end
 
 
