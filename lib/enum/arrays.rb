@@ -29,7 +29,7 @@ class Array
   end
 
   def capitalized_elements
-    @my_array.select{ |word| word.is_a? (String)}.select{ |word| word == word.capitalize}
+    @my_array.select{ |word| word.is_a? (String)}.delete_if{|word| word == word.downcase}
   end
 
 end
