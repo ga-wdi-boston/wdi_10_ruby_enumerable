@@ -17,18 +17,20 @@ class Array
   end
 
   def odd_numeric_elements
-    @my_array.select{ |i| i.is_a? (Fixnum)}.select{ |i| i.odd?}
+     @my_array.select{ |i| i.is_a? (Fixnum)}.select{ |i| i.odd?}
   end
 
   def string_elements
-     @my_array.select{ |s| s.is_a (string)}
+     @my_array.select{ |word| word.is_a? (String)}
   end
 
   def lowercase_string_elements_as_uppercase
+    @my_array.select{ |word| word.is_a? (String)}
+
   end
 
   def capitalized_elements
-    # @my_array.map { |letter| letter.capitalize}.to_s
+    @my_array.select{ |word| word.is_a? (String)}.select{ |word| word.upcase}
   end
 
 end
