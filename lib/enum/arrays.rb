@@ -13,19 +13,22 @@ class Array
   end
 
   def even_numeric_elements
-    @my_array.to_a.select{ |i| i.even? }
+    @my_array.select{ |i| i.is_a? (Fixnum)}.select{ |i| i.even?}
   end
 
   def odd_numeric_elements
+    @my_array.select{ |i| i.is_a? (Fixnum)}.select{ |i| i.odd?}
   end
 
   def string_elements
+     @my_array.select{ |s| s.is_a (string)}
   end
 
   def lowercase_string_elements_as_uppercase
   end
 
   def capitalized_elements
+    # @my_array.map { |letter| letter.capitalize}.to_s
   end
 
 end
