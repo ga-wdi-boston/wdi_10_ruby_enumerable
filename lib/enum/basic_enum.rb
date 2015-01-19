@@ -93,6 +93,8 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_with_object
   # Tip: You'll have to do .each_with_object(Hash.new(0)) to create a hash to start with. Do not save the hash in a variable. You may use the incrementor method here.
   def element_frequency_count
+    collection.each_with_object(Hash.new(0)){ |word, freq| word[freq] +=1}
+                                            # |key, value| key[value] Not sure how this peice works. If it does.
   end
 
 
@@ -100,6 +102,7 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-all
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-select
   def elements_ending_in_er
+    collection.find_all{ |word| word.include? "er"}
   end
 
 
