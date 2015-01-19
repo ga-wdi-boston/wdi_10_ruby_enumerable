@@ -35,7 +35,7 @@ class MyEnumeration
   # For the next 3 methods refer to: collect or map
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-any-3F
   def contains_a_word_longer_than?(min_length)
-    collection.map { |word| word.count > min_length}
+     collection.map { |word| word.count > min_length}
   end
 
   def capitalize_words
@@ -48,6 +48,7 @@ class MyEnumeration
 
   # Use symbol to proc notation on this one!
   def reverse_words
+    collection.map(&:reverse)
   end
 
   # Refer to collect_concat or flat_map for these next two
