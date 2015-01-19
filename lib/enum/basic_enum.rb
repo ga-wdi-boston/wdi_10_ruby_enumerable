@@ -149,22 +149,26 @@ class MyEnumeration
   # Refer to partition
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-partition
   def separate_elements_that_like_functional_programming_from_rest
+    collection.partition {|person| person[:likes_functional_programming] == true }
   end
 
   # Refer to reject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reject
   def elements_who_dislike_functional_programming
+    collection.reject {|person| person[:likes_functional_programming] == true }
   end
 
   # Refer to sort
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-sort
   # You will need to use the 'spaceship' operator <=>
   def elements_sorted_by_experience
+    collection.sort { |per1, per2| per1[:years_experience] <=> per2[:years_experience] }
   end
 
   # Refer to take
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-take
   def first_x_elements(x)
+    collection.take(x)
   end
 
   private
