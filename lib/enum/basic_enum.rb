@@ -62,7 +62,7 @@ class MyEnumeration
   # Refer to detect or find
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-detect
   def find_first_awesome_person
-    collection.detect{ |name| name.first}
+    collection.detect{ |name| name[:awesome]}# how does name[:awesome]work?
   end
 
   # Refer to drop
@@ -109,6 +109,7 @@ class MyEnumeration
   # Refer to find_index
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-index
   def index_of_first_awesome_element
+    collection.find_index{ |word| word[:awesome]}# same question as finding the first awesome person... how does word relate to [:awesome]
   end
 
   # Refer to group_by
