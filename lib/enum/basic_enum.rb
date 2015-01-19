@@ -62,11 +62,13 @@ class MyEnumeration
   # Refer to detect or find
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-detect
   def find_first_awesome_person
+    collection.detect{ |name| name.first}
   end
 
   # Refer to drop
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-drop
   def remove_first_three
+    collection.drop(3)
   end
 
   # Refer to drop_while
