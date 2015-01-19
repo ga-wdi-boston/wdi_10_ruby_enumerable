@@ -1,6 +1,7 @@
 require './spec/spec_helper.rb'
 require_relative '../lib/enum'
 
+
 RSpec.describe MyEnumeration do
 
   # Refer to count
