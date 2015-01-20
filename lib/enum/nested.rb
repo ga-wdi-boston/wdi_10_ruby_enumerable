@@ -18,21 +18,27 @@ class People
   end
 
   def ages_sum
+    @people.reduce(0) { |sum,human| sum += human.age }
   end
 
   def average_age
+    @people.reduce(0) { |sum,human| sum += human.age } / @people.size
   end
 
   def total_years_programming_experience_for_all_languages
+    people.map(&:years_language_experience).reduce(0) { |sum, language| sum += language[1] }
   end
 
   def favorite_food_frequency
+    people.map {&:favorite_foods }.flatten.each_with_object(Hash.new(0)) { |sum, hash| hash[sum]+=1 }
   end
 
   def total_combined_years_language_experience(language)
+    people.map { |person| person.years_language_experience[language] }.compact.reduce(:+)
   end
 
   def person_with_most_experience_in_language(language)
+    people.max_by { |person| person.years_language_experience[language].to_i }.name
   end
 
   private
@@ -40,5 +46,4 @@ class People
   def people
     @people
   end
-
 end
