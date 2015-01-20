@@ -18,12 +18,15 @@ class People
   end
 
   def ages_sum
+    people.map {|person| person.age}.inject(:+)
   end
 
   def average_age
+    people.map {|person| person.age}.inject {|sum, person| sum + person / person}
   end
 
   def total_years_programming_experience_for_all_languages
+    people.map {|person| person.years_language_experience}.map {|memo| memo.to_a}.flatten.select {|elem| elem.is_a?(Numeric)}.inject(:+)
   end
 
   def favorite_food_frequency
