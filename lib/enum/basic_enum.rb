@@ -115,6 +115,8 @@ class MyEnumeration
   # Refer to group_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-group-by
   def group_elements_by_favorite_language
+    collection.group_by{ |group| group[:favorite_language]}
+
   end
 
   # Refer to inject / reduce
