@@ -1,7 +1,11 @@
 class Array
 
+  def initialize(array)
+    @array = array
+  end
+
   def sum_of_numeric_elements
-    array.inject{|mem, var| var.is_a? Fixnum ? mem + var : mem }
+    array.select{|object|}
   end
 
   def product_of_numeric_elements

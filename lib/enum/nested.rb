@@ -30,7 +30,7 @@ class People
   end
 
   def favorite_food_frequency
-    people.map {|person| person.favorite_foods}.flatten.group_by{|i| i}.each_value{|value| value.count}
+    people.map {|person| person.favorite_foods}.flatten.group_by{|i| i}.
   end
 
   def total_combined_years_language_experience(language)
