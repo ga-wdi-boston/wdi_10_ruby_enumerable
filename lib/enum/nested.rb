@@ -1,4 +1,5 @@
 # Don't modify the Person class
+require 'pry'
 class Person
   attr_accessor :name, :age, :gender, :years_language_experience, :favorite_foods
 
@@ -18,12 +19,15 @@ class People
   end
 
   def ages_sum
+    people.map { |person| person.age}.reduce(:+)
   end
 
   def average_age
+    people.map { |person| person.age}.reduce(:+)/people.size
   end
 
   def total_years_programming_experience_for_all_languages
+    people.map { |person| person.years_language_experience}.map { |item| item.values}.reduce(:+).reduce(:+)
   end
 
   def favorite_food_frequency
@@ -42,3 +46,6 @@ class People
   end
 
 end
+
+# binding.pry
+# puts "---"
