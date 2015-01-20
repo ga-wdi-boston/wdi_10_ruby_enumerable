@@ -172,6 +172,9 @@ class MyEnumeration
     collection.sort_by{|person| person[:years_experience]}
   end
 
+  # another way - 
+  #collection.sort_by{|memo, hash| memo[:years_experience] <=> hash[:years_experience]}
+
   # Refer to take
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-take
   def first_x_elements(x)
