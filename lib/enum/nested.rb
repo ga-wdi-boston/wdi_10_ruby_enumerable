@@ -38,7 +38,7 @@ class People
   end
 
   def person_with_most_experience_in_language(language)
-    @people.max_by {|person| person.years_language_experience[language].to_i}.name
+    @people.max_by {|person| person.years_language_experience[language]}
   end
 
   private
