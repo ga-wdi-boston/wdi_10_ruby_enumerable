@@ -65,6 +65,8 @@ class MyEnumeration
   def element_frequency_count
     collection.each_with_object({}) do |key, freq_hash|
       freq_hash[key] = collection.count(key)
+
+      #|key, value| value[key] += 1
     end
   end
   #Returns an index of the first awesome person
