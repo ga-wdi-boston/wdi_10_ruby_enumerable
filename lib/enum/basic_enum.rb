@@ -139,12 +139,14 @@ class MyEnumeration
   # Refer to max_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-max-by
   def most_experienced_element
+    collection.max_by{ |element| element[:years_experience]}
   end
 
   # Refer to include? / member?
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-include-3F
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-member-3F
   def element_present?(name)
+    collection.include? name
   end
 
   # Refer to minmax_by
