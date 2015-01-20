@@ -41,11 +41,20 @@ RSpec.describe People do
   end
 
   describe '#total_combined_years_language_experience' do
-    it 'returns the total years of experience between all people for a language' do
+    it 'returns the name of the person with the most experience in a language' do
       expect(@people.total_combined_years_language_experience(:ruby)).to eq 7
       expect(@people.total_combined_years_language_experience(:python)).to eq 6
       expect(@people.total_combined_years_language_experience(:javascript)).to eq 6
       expect(@people.total_combined_years_language_experience(:c)).to eq 13
+    end
+  end
+
+    describe '#person_with_most_experience_in_language' do
+    it 'Returns the person with the most experience in a language' do
+      expect(@people.person_with_most_experience_in_language(:ruby)).to eq "Jamal"
+      expect(@people.person_with_most_experience_in_language(:python)).to eq "Chris"
+      expect(@people.person_with_most_experience_in_language(:javascript)).to eq "Kee"
+      expect(@people.person_with_most_experience_in_language(:c)).to eq "Jamie"
     end
   end
 

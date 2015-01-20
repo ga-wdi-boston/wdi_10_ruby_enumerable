@@ -13,138 +13,109 @@ class MyEnumeration
   # EXAMPLE: THIS ONE IS DONE FOR YOU
   # Refer to count
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-count
+  #Length of structure
   def number_of_elements_in_collection
-    # collection here refers to the collection that is set with the initialize method
-    # collection() is a private accessor method at the bottom of this class that accesses @collection
     collection.count
   end
-
-  # This one also uses 'count'
-  # Try it yourself!
+  #Counts the numbers
   def number_of_floats_or_fixnums
+    collection.map{|elem| elem.is_a?(Numeric)}.count(true)
   end
-
-  # Refer to: all?
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-all-3F
+  #Returns boolean if all words are longer than len
   def all_words_longer_than_length?(min_length)
+    collection.all?{ |word| word.length > min_length}
   end
-
-
-  # For the next 3 methods refer to: collect or map
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-any-3F
+   #Returns boolean if a word are longer than min_length
   def contains_a_word_longer_than?(min_length)
+    collection.any?{ |word| word.length > min_length}
   end
-
+  #Capitalize words in an array
   def capitalize_words
+    collection.map(&:capitalize)
   end
-
+  #Squares each number in an array
   def square_numbers
+    collection.map{ |num| num**2 }
   end
-
-  # Use symbol to proc notation on this one!
+  #Reverses each word in an array
   def reverse_words
+    collection.map(&:reverse)
   end
-
-  # Refer to collect_concat or flat_map for these next two
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-flat_map
-  # To get the order right for the tests, you'll need to use the absolute value method
+  #Returns an array with the +/- numbers in inputed array
   def positive_and_negative_numbers
+    collection.flat_map{ |num| [num.abs, -num.abs] }
   end
-
-  # Refer to detect or find
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-detect
+  #Finds first :awesome value and retruns name from structure
   def find_first_awesome_person
+    collection.find{|stat| stat[:awesome] == true}
   end
-
-  # Refer to drop
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-drop
+  #Removes 1st three from an array.
   def remove_first_three
+    collection.drop(3)
   end
-
-  # Refer to drop_while
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-drop_while
+  #Returns an array with dropped words until 'hot' from an inputed array.
   def drop_until_its_hot
+    collection.drop_while { |word| word != "hot" }
   end
-
-
-  # Refer to each_slice
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_slice
-  # Tip: After .each_slice chain on .to_a to turn the returned Enumerator into an array
+  #Returns a 2-d array from a split input array.
   def groups_of(num)
+    collection.each_slice(num).to_a
   end
-
-
-  # Refer to each_with_object
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-each_with_object
-  # Tip: You'll have to do .each_with_object(Hash.new(0)) to create a hash to start with. Do not save the hash in a variable. You may use the incrementor method here.
+  #Returns a hash of the frequency count of the words in an array
   def element_frequency_count
+    collection.each_with_object({}) do |key, freq_hash|
+      freq_hash[key] = collection.count(key)
+
+      #|key, value| value[key] += 1
+    end
   end
-
-
-  # Refer to find_all / select
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-all
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-select
-  def elements_ending_in_er
-  end
-
-
-  # Refer to find_index
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find-index
+  #Returns an index of the first awesome person
   def index_of_first_awesome_element
+    collection.find_index{|info| info[:awesome]}
   end
-
-  # Refer to group_by
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-group-by
+  #Returns an array of strings ending in "er" in an array
+  def elements_ending_in_er
+    collection.find_all{|word| word.split("").last(2) == ["e","r"]}
+  end
+  #Returns a hash of fav languages as keys & hashes of who like them
   def group_elements_by_favorite_language
+    collection.group_by{|person| person[:favorite_language]}
   end
-
-  # Refer to inject / reduce
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
+  #Returns an Fixnum sum of experiences
   def sum_of_experiences
+    collection.map{ | person | person[:years_experience] }.reduce(:+)
   end
-
-  # Refer to inject / reduce
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
+  #Returns the person element with longest name
   def longest_element_name_using_inject
+    collection.inject{ |longest, info| longest[:name].length > info[:name].length ? longest : info}
   end
-
-  # Refer to max_by
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-max-by
+  #Returns the person element with the most years experience
   def most_experienced_element
+    collection.max_by { |info| info[:years_experience] }
   end
-
-  # Refer to include? / member?
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-include-3F
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-member-3F
+  #Returns true if the element is present in the collection
   def element_present?(name)
+    collection.include?(name)
   end
-
-  # Refer to minmax_by
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-minmax_by
+  #Returns an array of elements with longest and shortest names
   def elements_with_longest_and_shortest_names
+    collection.minmax_by { |info| info[:name].length }
   end
-
-  # Refer to partition
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-partition
+  #Returns an array splitting up elements who do/don\'t' funct prog.
   def separate_elements_that_like_functional_programming_from_rest
+   collection.partition{|info| info[:likes_functional_programming]}
   end
-
-  # Refer to reject
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reject
+  #Returns an array of elements who do not like functional programming
   def elements_who_dislike_functional_programming
+    collection.reject{ |info| info[:likes_functional_programming] }
   end
-
-  # Refer to sort
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-sort
-  # You will need to use the 'spaceship' operator <=>
+  #Returns an array sorted by yrs of experience
   def elements_sorted_by_experience
+    collection.sort{ |person1, person2| person1[:years_experience] <=> person2[:years_experience] }
   end
-
-  # Refer to take
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-take
-  def first_x_elements(x)
+  #Returns an array of elements with longest and shortest names
+  def first_x_elements(num)
+    collection.take(num)
   end
 
   private
