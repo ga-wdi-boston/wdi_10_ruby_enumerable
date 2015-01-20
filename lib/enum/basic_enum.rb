@@ -172,11 +172,13 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-sort
   # You will need to use the 'spaceship' operator <=>
   def elements_sorted_by_experience
+    collection.sort{ |max, min| max[:years_experience] <=> min[:years_experience]}
   end
 
   # Refer to take
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-take
   def first_x_elements(x)
+    collection.take(x)
   end
 
   private
