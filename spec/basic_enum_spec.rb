@@ -317,7 +317,7 @@ RSpec.describe MyEnumeration do
   # Refer to take
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-take
   describe '#first_x_elements' do
-    it 'returns an array of elements with longest and shortest names' do
+    it 'returns an array with the first x elements from the hash' do
       my_enum = MyEnumeration.new([ {name: "Rich", years_experience: 5},
                                     {name: "Catherine", years_experience: 2},
                                     {name: "Anna", years_experience: 8},
