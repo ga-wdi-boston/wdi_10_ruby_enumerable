@@ -10,16 +10,20 @@ class Array
   end
 
   def even_numeric_elements
-    map {|element| element %2 == 0? element : nil}
+    select { |element| element.class == Fixnum && element.even? }
   end
 
   def odd_numeric_elements
+    select { |element| element.class == Fixnum && element.odd? }
   end
 
   def string_elements
+    select { |element| element.class == String}
   end
 
   def lowercase_string_elements_as_uppercase
+    #I'm not sure why this one doesn't work the way I want it to
+   map { |element| element.class == String && element == element.downcase}.capitalize
   end
 
   def capitalized_elements
