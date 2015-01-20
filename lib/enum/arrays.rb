@@ -1,6 +1,7 @@
 class Array
 
   def sum_of_numeric_elements
+    array.inject{|mem, var| var.is_a? Fixnum ? mem + var : mem }
   end
 
   def product_of_numeric_elements
@@ -19,6 +20,10 @@ class Array
   end
 
   def capitalized_elements
+  end
+
+  def array
+    @array
   end
 
 end
