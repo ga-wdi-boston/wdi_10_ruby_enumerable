@@ -18,12 +18,15 @@ class People
   end
 
   def ages_sum
+    people.collect(&:age).inject(:+)
   end
 
   def average_age
+    ages_sum / people.collect(&:age).count
   end
 
   def total_years_programming_experience_for_all_languages
+    people.collect {|exp| exp[:years_language_experience].values.inject(:+)}.inject(:+)
   end
 
   def favorite_food_frequency

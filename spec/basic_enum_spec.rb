@@ -162,13 +162,7 @@ RSpec.describe MyEnumeration do
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-group-by
   describe '#group_elements_by_favorite_language' do
     it 'returns a hash of favorite languages as keys, and hashes of who like them as elements' do
-      my_enum = MyEnumeration.new([ {name: "Kelly", favorite_language: :ruby},
-                                    {name: "Chris", favorite_language: :javascript},
-                                    {name: "Kim", favorite_language: :ruby},
-                                    {name: "Dan", favorite_language: :haskell},
-                                    {name: "Martin", favorite_language: :javascript},
-                                    {name: "Ki", favorite_language: :haskell},
-                                    {name: "Anna", favorite_language: :ruby}])
+      my_enum = MyEnumeration.new()
       expected_result = {
                          ruby:      [
                                     {name: "Kelly", favorite_language: :ruby},
