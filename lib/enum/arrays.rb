@@ -2,6 +2,10 @@ require 'pry-byebug'
 
 class Array
 
+  def initialize (elements)
+    @elements = e
+  end
+
   def sum_of_numeric_elements #using e for elements.
     select { [e] e.is_a? Numeric }.reduce(:+) #is_a? to return a boolean value, that if e is a numeric element then add them and return the sum.
   end
