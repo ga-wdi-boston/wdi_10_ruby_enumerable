@@ -1,6 +1,11 @@
 class Array
 
+  def initialize(array)
+    @array = array
+  end
+
   def sum_of_numeric_elements
+    array.select{|object|}
   end
 
   def product_of_numeric_elements
@@ -19,6 +24,10 @@ class Array
   end
 
   def capitalized_elements
+  end
+
+  def array
+    @array
   end
 
 end
