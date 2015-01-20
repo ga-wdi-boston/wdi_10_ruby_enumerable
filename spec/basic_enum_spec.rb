@@ -87,7 +87,7 @@ RSpec.describe MyEnumeration do
 
   # Refer to detect or find
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-detect
-  # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find
+  #   http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-find
   describe '#find_first_awesome_person' do
     it 'returns the first person who is awesome' do
       my_enum = MyEnumeration.new([{name: "JohnDoe", awesome: false}, {name: "Chris", awesome: true}, {name: "Anna", awesome: true}])
