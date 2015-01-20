@@ -123,12 +123,17 @@ class MyEnumeration
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def sum_of_experiences
+    collection.inject(1){ |key, value| key + value[:years_experience]} # =>20
   end
 
   # Refer to inject / reduce
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-inject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reduce
   def longest_element_name_using_inject
+      collection.inject do |memo, word| (memo[:name].length) > (word[:name].length) ? memo : word
+      end
+  # #we ask if the person's name in memo is longer than the next person's name
+  # then we save the entire hash entry for the person with the longest name
   end
 
   # Refer to max_by
