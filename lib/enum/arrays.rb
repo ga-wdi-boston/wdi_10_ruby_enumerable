@@ -1,6 +1,12 @@
 class Array
 
+  def initialize(array)
+    @array = array
+  end
+
   def sum_of_numeric_elements
+    sum = @array.reject(String)
+    sum.reduce(:+)
   end
 
   def product_of_numeric_elements
