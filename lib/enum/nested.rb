@@ -30,6 +30,7 @@ class People
   end
 
   def favorite_food_frequency
+    people.each_with_object([]) {|i, a| a << i.favorite_foods}.flatten.group_by {|i| i}
   end
 
   def total_combined_years_language_experience(language)
