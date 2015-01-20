@@ -152,16 +152,20 @@ class MyEnumeration
   # Refer to minmax_by
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-minmax_by
   def elements_with_longest_and_shortest_names
+    collection.minmax_by{ |name| name[:name].length}
   end
 
   # Refer to partition
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-partition
   def separate_elements_that_like_functional_programming_from_rest
+    collection.partition{ |prog| prog[:likes_functional_programming] == true}
+
   end
 
   # Refer to reject
   # http://ruby-doc.org/core-2.1.4/Enumerable.html#method-i-reject
   def elements_who_dislike_functional_programming
+    collection.reject{ |prog| prog[:likes_functional_programming] == true}
   end
 
   # Refer to sort
